@@ -1,0 +1,55 @@
+<web-app version="4.0"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:javaee="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+	<display-name>RBAC Application</display-name>
+
+	<!-- Servlet Mappings -->
+	<servlet>
+		<servlet-name>AuthController</servlet-name>
+		<servlet-class>com.example.rbac.controllers.AuthController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthController</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RoleController</servlet-name>
+		<servlet-class>com.example.rbac.controllers.RoleController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RoleController</servlet-name>
+		<url-pattern>/roles</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UserController</servlet-name>
+		<servlet-class>com.example.rbac.controllers.UserController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/users</url-pattern>
+	</servlet-mapping>
+
+	<!-- Filters -->
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>com.example.rbac.filters.AuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/dashboard.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>AuthorizationFilter</filter-name>
+		<filter-class>com.example.rbac.filters.AuthorizationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthorizationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>
